@@ -17,6 +17,8 @@ import {
   createNote as createNoteMutation,
   deleteNote as deleteNoteMutation,
 } from "./graphql/mutations";
+import { DataStore } from '@aws-amplify/datastore';
+import { DomainRawTextFiles } from './models';
 
 const App = ({ signOut }) => {
   const [notes, setNotes] = useState([]);
