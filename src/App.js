@@ -16,8 +16,7 @@ import {
   createNote as createNoteMutation,
   deleteNote as deleteNoteMutation,
 } from "./graphql/mutations";
-import { DataStore } from '@aws-amplify/datastore';
-import { DomainRawTextFiles } from './models';
+
 
 const App = ({ signOut }) => {
   const [notes, setNotes] = useState([]);
@@ -33,6 +32,7 @@ const App = ({ signOut }) => {
   }
 
   async function createNote(event) {
+    console.log('Note Function Called')
     event.preventDefault();
     const form = new FormData(event.target);
     const file = form.get("file");
