@@ -28,11 +28,20 @@ const App = ({ signOut }) => {
   async function fetchNotes() {
     const apiData = await API.graphql({ query: listNotes });
     const notesFromAPI = apiData.data.listNotes.items;
+    await Promise.all(
+      notesFromAPI.map(async (note) => {
+        if (note.file) {
+          const url = await Storage.get(note.name);
+          note.fileUrl = url;
+        }
+        return note;
+      })
+    );
     setNotes(notesFromAPI);
   }
+  
 
   async function createNote(event) {
-    console.log('Note Function Called')
     event.preventDefault();
     const form = new FormData(event.target);
     const file = form.get("file");
@@ -41,7 +50,7 @@ const App = ({ signOut }) => {
       description: form.get("description"),
       file: file.name,
     };
-    await Storage.put(data.file, file);
+    if (!!data.file) await Storage.put(data.name, file);
     await API.graphql({
       query: createNoteMutation,
       variables: { input: data },
@@ -50,15 +59,17 @@ const App = ({ signOut }) => {
     event.target.reset();
   }
   
-  async function deleteNote({ id, file }) {
+  
+  async function deleteNote({ id, name }) {
     const newNotes = notes.filter((note) => note.id !== id);
     setNotes(newNotes);
-    await Storage.remove(file);
+    await Storage.remove(name);
     await API.graphql({
       query: deleteNoteMutation,
       variables: { input: { id } },
     });
   }
+  
 
   return (
     <View className="App">
@@ -106,13 +117,10 @@ const App = ({ signOut }) => {
             {note.name}
           </Text>
           <Text as="span">{note.description}</Text>
-          {note.file && (
-            <div>
-              <Text>{note.file}</Text>
-              <a href={Storage.get(note.file)} download>
-                Download File
-              </a>
-            </div>
+          {note.fileUrl && (
+            <a href={note.fileUrl} target="_blank" rel="noopener noreferrer">
+              Download file
+            </a>
           )}
           <Button variation="link" onClick={() => deleteNote(note)}>
             Delete note
