@@ -5,7 +5,5 @@
  **************************************************************************/
 
 export { default as studioTheme } from "./studioTheme";
-export { default as DomainRawTextFilesCreateForm } from "./DomainRawTextFilesCreateForm";
-export { default as DomainRawTextFilesUpdateForm } from "./DomainRawTextFilesUpdateForm";
 export { default as NoteCreateForm } from "./NoteCreateForm";
 export { default as NoteUpdateForm } from "./NoteUpdateForm";

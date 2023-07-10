@@ -4,9 +4,8 @@ import { schema } from './schema';
 
 
 
-const { DomainRawTextFiles, Note } = initSchema(schema);
+const { Note } = initSchema(schema);
 
 export {
-  DomainRawTextFiles,
   Note
 };

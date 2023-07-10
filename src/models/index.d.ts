@@ -6,38 +6,6 @@ import { LazyLoading, LazyLoadingDisabled } from "@aws-amplify/datastore";
 
 
 
-type EagerDomainRawTextFiles = {
-  readonly [__modelMeta__]: {
-    identifier: ManagedIdentifier<DomainRawTextFiles, 'id'>;
-    readOnlyFields: 'createdAt' | 'updatedAt';
-  };
-  readonly id: string;
-  readonly name?: string | null;
-  readonly description?: string | null;
-  readonly text?: string | null;
-  readonly createdAt?: string | null;
-  readonly updatedAt?: string | null;
-}
-
-type LazyDomainRawTextFiles = {
-  readonly [__modelMeta__]: {
-    identifier: ManagedIdentifier<DomainRawTextFiles, 'id'>;
-    readOnlyFields: 'createdAt' | 'updatedAt';
-  };
-  readonly id: string;
-  readonly name?: string | null;
-  readonly description?: string | null;
-  readonly text?: string | null;
-  readonly createdAt?: string | null;
-  readonly updatedAt?: string | null;
-}
-
-export declare type DomainRawTextFiles = LazyLoading extends LazyLoadingDisabled ? EagerDomainRawTextFiles : LazyDomainRawTextFiles
-
-export declare const DomainRawTextFiles: (new (init: ModelInit<DomainRawTextFiles>) => DomainRawTextFiles) & {
-  copyOf(source: DomainRawTextFiles, mutator: (draft: MutableModel<DomainRawTextFiles>) => MutableModel<DomainRawTextFiles> | void): DomainRawTextFiles;
-}
-
 type EagerNote = {
   readonly [__modelMeta__]: {
     identifier: ManagedIdentifier<Note, 'id'>;
