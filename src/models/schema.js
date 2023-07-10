@@ -24,8 +24,8 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
-                "image": {
-                    "name": "image",
+                "file": {
+                    "name": "file",
                     "isArray": false,
                     "type": "String",
                     "isRequired": false,
@@ -77,5 +77,5 @@ export const schema = {
     "enums": {},
     "nonModels": {},
     "codegenVersion": "3.4.4",
-    "version": "60791062c459bc88a9d1b9c2d80fc3a3"
+    "version": "719123183242bf1e5acf6a043fd5e126"
 };
