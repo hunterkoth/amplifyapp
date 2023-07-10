@@ -68,7 +68,10 @@ const App = ({ signOut }) => {
       query: deleteNoteMutation,
       variables: { input: { id } },
     });
+    // Remove the deleted note from the local state
+    setNotes((prevNotes) => prevNotes.filter((note) => note.id !== id));
   }
+  
   
 
   return (
